@@ -1,0 +1,117 @@
+<html>
+<title >Toxic Comment Analysis</title>
+<head>
+<style>
+.myButton{
+			  border: none;
+			  text-align: center;
+			  cursor: pointer;
+			  text-transform: uppercase;
+			  outline: none;
+			  overflow: hidden;
+			  color: #000000;
+			  font-weight: 700;
+			  font-size: 12px;
+			  background-color: #FFF44F;
+			  padding: 10px 15px;
+			  margin: 0 auto;
+			  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+			  margin-left:17%;
+		}
+.tab3
+{
+    height: auto;
+    top: 45%;
+    position: absolute;
+    left: 40%;
+	width: 300px;
+}
+input { 
+	width:30%; 
+	margin-bottom: 10px; 
+	background: #a8a9a8;
+	border: none;
+	outline: none;
+	padding: 10px;
+	font-size: 15px;
+	color: white;
+	text-shadow: white;
+	border: #6c493a;
+	border-radius: 4px;
+	box-shadow: white;
+}
+.header {	
+			top:0px;	
+			margin:0px;
+			left: 0px;
+			right: 0px;
+			position: fixed;
+			background: #FFF44F;
+			color: black;
+			overflow: hidden;
+			padding-bottom: 40px;
+			font-size: 2.25vw;
+			width: 100%;
+			padding-left:0px;
+			text-align: center;
+			padding-top:20px;
+		}
+		.second{
+			top:80px;
+			bottom:0px;
+			margin:0px;
+			left: 0px;
+			right: 0px;
+			position: fixed;
+			padding-top: 20px;
+			width: 100%;
+			background-image: url({{url_for('static',filename='images/515.png')}});
+			background-repeat:no-repeat;
+			background-attachment:fixed; 
+			background-size: cover;
+			font-family:Georgia, serif;
+			color:white;
+			font-size:30px;
+			text-align:center;
+		}
+::placeholder {
+  color: white;
+  opacity: 1; 
+}
+</style>
+</head>
+<body> 
+<form  method="POST">
+  <div class="header">
+    Analyse the toxicity of a comment!
+</div>
+<div class="second" style="">
+    Give the comment in the below text box <br><br>
+    <form action="{{url_for('predict')}}" method="post">
+	<input type="text"  align = "Center" placeholder="Enter the comment" name="comment" required>
+	
+	
+	<table align='center' style='padding:0.5px; border-spacing: 10px; font-size:20 px'>	
+	<tr>
+	<td colspan="2" align="center" ><button class="myButton" type="submit" name="predict" align='center' value="Predict" >Predict</button></td>
+	</tr>
+	<tr>
+	<td colspan="2" align= "center" style="font-size:20px" ><FONT COLOR=white><b>{{ypred}}</b></td>
+	</tr>
+	</table>
+	
+	</form>
+	
+	{% if flag == 0 %}
+		<img src="/static/images/hello.png", alt="Clean" class="tab3" style="display: block;margin-left: auto;margin-right: auto;">
+	{% elif flag == 1 %}
+		<img src="/static/images/happy.png", alt="Clean" class="tab3" style="display: block;margin-left: auto;margin-right: auto;">
+    {% else %}
+        <img src="/static/images/toxic.png", alt="Toxic" class="tab3" style="display: block;margin-left: auto;margin-right: auto;">
+		{% endif %}
+<!img src={{url}}, alt="Emotion" class="tab3">
+		
+    
+  </div>
+
+</form>
